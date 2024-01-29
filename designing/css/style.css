@@ -1,0 +1,43 @@
+	h1{
+			background-color:red;
+			color:yellow;
+			text-decoration:underline;
+		}
+		
+		h2,h3,h4{
+			color:pink;
+			background-color:blue;
+		}
+		
+		.test{
+			text-transform:uppercase;
+			color:red;
+		}
+		
+		.center{
+			text-align:center;
+		}
+		
+		
+		#demo{
+			background-color:green;
+			color:orange;
+		}
+		
+		
+		h5.myborder{
+			border:solid 2px red;
+		}
+		
+		.mybox{
+			width:200px;
+			height:200px;
+			float:left;
+			background-color:red;
+		}
+		
+		.mybox h1{
+			color:white;
+			text-align:center;
+			font-family:cursive;
+		}

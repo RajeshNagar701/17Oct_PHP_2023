@@ -1,0 +1,27 @@
+
+<html>
+<head>
+<title>$_REQUEST </title>
+</head>
+<body>
+
+<form action="" method="post">
+
+	<p>Name: <input type="text" name="name" required /></p>
+	<p>Age: <input type="text"name="age" required /></p>
+	<p><input type="submit"name="submit"value="Click"/></p>
+
+</form>
+
+</body>
+</html>
+<?php
+if(isset($_REQUEST['submit']))
+{
+	echo $name=$_REQUEST['name'];
+	echo $age=$_REQUEST['age'];
+}
+
+
+$name="Raheeen";
+?>
