@@ -26,27 +26,16 @@ those who know JavaScript.
 here are many useful Javascript frameworks and libraries available:
 
 Angular
-
 React
-
 jQuery
-
 Vue.js
-
 Ext.js
-
 Ember.js
-
 Meteor
-
 Mithril
-
 Node.js
-
 Polymer
-
 Aurelia
-
 Backbone.js
 
 It is really impossible to give a complete list of all the available 
@@ -56,14 +45,11 @@ The Javascript world is just too large and too much new is happening.
 Applications of Javascript Programming
 
 Javascript is one of the most widely used programming languages 
+
 (Front-end as well as Back-end). 
-
 Manipulating HTML Manupalation  -
-
 Manipulating css Manupalation  -
-
 Client side Form validation - 
-
 User Notifications - You can use Javascript to raise dynamic pop-ups on the webpages 
 to give different types of notifications to your website visitors.
 
@@ -80,6 +66,7 @@ in developing very sophisticated server applications including Web Servers.
 
 
 JavaScript - Syntax
+
 
 <script>
    JavaScript code
@@ -107,7 +94,7 @@ JavaScript in External File   file.js
 <html>
    <body>   
       <script>
-         
+			echo "Hello World!"
             document.write("Hello World!")
          
       </script>      
@@ -117,7 +104,9 @@ JavaScript in External File   file.js
 
 <script>
   
-    var abc=20;	
+	$abc=10;
+  
+    var abc=10;	
 	var name="Rajesh"
 	
     var a,b,c;
@@ -158,11 +147,13 @@ JavaScript in External File   file.js
 	
 		
 		<!--
-		<?php ?> 				<script></script>
-		$a=10  					var a=10
-		echo "Raj"     			document.write("Raj");
-		echo "number" . $a      document.write("number" + a);  
-		//  /* */               same  
+		
+		<?php ?> 				|  <script></script>
+		$a=10  					|  var a=10
+		echo "Raj"     			|  document.write("Raj");
+		echo "number is" . $a   |  document.write("number" + a);  
+		comment //  /* */       |  same  
+		
 		-->
 		
 		<script>
@@ -193,7 +184,9 @@ JavaScript in External File   file.js
 			
 			document.getElementById('test1').style.color="blue";
 			document.getElementById('test1').style.backgroundColor="pink";
+			document.getElementById('test1').style.fontStyle="italic";
 			
+			console.log("sum of a & b are : "+(a+b));
 		</script>
 		
 		
