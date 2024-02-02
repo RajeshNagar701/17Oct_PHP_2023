@@ -19,22 +19,20 @@ var name = cars[0];
 var cars = ["Saab", "Volvo", "BMW"];
 document.write(cars + "<br>");
 
-var person = ["John", "Doe", 46];
-document.write(person[1]);
+document.write(cars[1] + "<br>");
 
+// ====================================================================================
 
 var students=["Jinal","Sahil","Kamlesh","Jainik","Jainam","Saloni","Kajal"];
-document.write("<h1>" + students + "</h1>");
-
-document.write("<h1>" + students[0] + "</h1>");
-document.write("<h1>" + students[1] + "</h1>");
-
-
-
 
 for(data of students)
 {
 	document.write("<h1>" + data + "</h1>");
+}
+
+for(var i=0;i<students.length;i++)
+{
+	document.write("<p>" + students[i] + "</p>");
 }
 
 
