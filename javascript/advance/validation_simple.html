@@ -24,23 +24,40 @@ function validate2()
 	var ufn=document.forms["myform"]["ufn"].value;  
 	if(ufn=="" || ufn==null) 
 	{
-		alert('Please fill out the User First Name'); 
-		return false;  
+		document.getElementById('msg').innerHTML="Please fill out the User First Name";
+		return false;		
+	}
+	else
+	{
+		document.getElementById('msg').innerHTML="";
+	}
+	
+	var uln=document.forms["myform"]["uln"].value;  
+	if(uln=="" || uln==null) 
+	{
+		document.getElementById('msg1').innerHTML="Please fill out the User Last Name";
+		return false;		
+	}
+	else
+	{
+		document.getElementById('msg1').innerHTML="";
 	}
 }
 
 
 function validate3(arg) 
 {
-	if(arg.ufn.value=="") 
+	if(arg.ufn.value=="")
 	{
-		document.getElementById('msg').innerHTML='Please fill out the User First Name'; 
+		document.getElementById('msg3').innerHTML="Please fill out the User First Name";
 		arg.ufn.focus();
-		return false;  
+		return false;	
 	}
-	else
+	if(arg.uln.value=="")
 	{
-		document.getElementById('msg').innerHTML=''; 
+		document.getElementById('msg3').innerHTML="Please fill out the User Last Name";
+		arg.uln.focus();
+		return false;	
 	}
 }
 </script>
@@ -72,7 +89,19 @@ function validate3(arg)
                 </tr>
                 <tr>
             		<th>User Fist Name:-</th>
-                    <td><input type="text" name="ufn" ></td>
+                    <td>
+					<input type="text" name="ufn" >
+					<span id="msg" style="color:red"></span>	
+					</td>
+					
+                </tr>
+				 <tr>
+            		<th>User Last Name:-</th>
+                   
+					<td>
+					<input type="text" name="uln" >
+					<span id="msg1" style="color:red"></span>	
+					</td>
                 </tr>
                 <tr>
                 	<td><input type="submit" name="submit"/></td>
@@ -83,6 +112,7 @@ function validate3(arg)
 		
 		<br><br>
 		
+		<h1 align="center" style="color:red" id="msg3"></h1>
 		<form action="" method="post" onsubmit="return validate3(this)">
 			<table border="2" align="center">
             	<tr>
@@ -92,7 +122,12 @@ function validate3(arg)
             		<th>User Fist Name:-</th>
                     <td>
 					<input type="text" id="ufn" name="ufn" >
-					<span id="msg" style="color:red"></span>	
+					</td>
+                </tr>
+				<tr>
+            		<th>User Last Name:-</th>
+                    <td>
+					<input type="text" id="uln" name="uln" >
 					</td>
                 </tr>
                 <tr>
