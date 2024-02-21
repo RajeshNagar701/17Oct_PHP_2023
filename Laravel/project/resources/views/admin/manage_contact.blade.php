@@ -5,7 +5,7 @@
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="page-head-line">Manage Inquiry</h1>
+                <h1 class="page-head-line">Manage Contact</h1>
                
             </div>
         </div>
@@ -32,18 +32,18 @@
                                 </thead>
                                 <tbody>
                                    <?php
-									if(!empty($inquiry_arr))
+									if(!empty($contact_arr))
 									{
-										foreach($inquiry_arr as $data)
+										foreach($contact_arr as $data)
 										{
 										?>
 											<tr>
-												<td><?php echo $data->iid;?></td>
+												<td><?php echo $data->id;?></td>
 												<td><?php echo $data->name;?></td>
 												<td><?php echo $data->email;?></td>
-												<td><?php echo $data->comment;?></td>
+												<td><?php echo $data->msg;?></td>
 												<td  align="center">
-													<a href="delete?del_iid=<?php echo $data->iid;?>" class="btn btn-danger" >Delete</a>
+													<a href="manage_contact/<?php echo $data->id;?>" class="btn btn-danger" >Delete</a>
 													<button class="btn btn-primary">Edit</button>
 												</td>
 											</tr>

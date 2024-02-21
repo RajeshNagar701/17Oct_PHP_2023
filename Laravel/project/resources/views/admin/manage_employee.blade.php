@@ -39,12 +39,12 @@
 										{
 										?>
 											<tr>
-												<td><?php echo $data->emp_id;?></td>
+												<td><?php echo $data->id;?></td>
 												<td><?php echo $data->name;?></td>
 												<td><?php echo $data->email;?></td>
 												<td><?php echo $data->password;?></td>
 												<td  align="center">
-													<a href="delete?del_emp_id=<?php echo $data->emp_id;?>" class="btn btn-danger" >Delete</a>
+													<a href="manage_employee/<?php echo $data->id;?>" class="btn btn-danger" >Delete</a>
 													<button class="btn btn-primary">Edit</button>
 												</td>
 											</tr>

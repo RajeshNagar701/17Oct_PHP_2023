@@ -7,9 +7,9 @@
     <title>Responsive Bootstrap Advance Admin Template</title>
 
     <!-- BOOTSTRAP STYLES-->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="{{url('admin/assets/css/bootstrap.css')}}" rel="stylesheet" />
     <!-- FONTAWESOME STYLES-->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="{{url('admin/assets/css/font-awesome.css')}}" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 
@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row text-center " style="padding-top:100px;">
             <div class="col-md-12">
-                <img src="assets/img/logo-invoice.png" />
+                <img src="{{url('admin/assets/img/logo-invoice.png')}}" />
             </div>
         </div>
          <div class="row ">
@@ -32,11 +32,11 @@
                                        <br />
                                      <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
-                                            <input type="text" value="<?php if(isset($_COOKIE['ac_email'])) echo $_COOKIE['ac_email']; ?>" name="email" class="form-control" placeholder="Your Username " />
+                                            <input type="text" value="<?php //if(isset($_COOKIE['ac_email'])) echo $_COOKIE['ac_email']; ?>" name="email" class="form-control" placeholder="Your Username " />
                                         </div>
                                                                               <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="password" value="<?php if(isset($_COOKIE['ac_password'])) echo $_COOKIE['ac_password']; ?>" name="password" class="form-control"  placeholder="Your Password" />
+                                            <input type="password" value="<?php //if(isset($_COOKIE['ac_password'])) echo $_COOKIE['ac_password']; ?>" name="password" class="form-control"  placeholder="Your Password" />
                                         </div>
                                     <div class="form-group">
 										<label class="checkbox-inline">

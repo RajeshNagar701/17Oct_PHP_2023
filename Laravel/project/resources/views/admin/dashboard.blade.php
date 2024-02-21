@@ -1,4 +1,5 @@
 ﻿@extends('admin.layout.structure')
+
 @section('maincode')
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
@@ -411,7 +412,7 @@
                 </div>
                 <!--/.Row-->
                 <hr />
-                <div class="row" style="padding-bottom: 100px; `">
+                <div class="row" style="padding-bottom: 100px;">
                     <div class="col-md-6">
                         <div id="comments-sec">
                             <h4><strong>Compose Support Ticket </strong></h4>

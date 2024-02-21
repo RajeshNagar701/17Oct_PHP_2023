@@ -2,6 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ProductController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,9 +51,10 @@ Route::get('/classes', function () {
     return view('website.classes');
 });
 
-Route::get('/contact', function () {
-    return view('website.contact');
-});
+//Route::get('/contact', function () {return view('website.contact');});
+
+Route::get('/contact',[ContactController::class,'create']);
+
 
 Route::get('/edit_user', function () {
     return view('website.edit_user');
@@ -76,8 +85,57 @@ Route::get('/testimonial', function () {
 });
 
 
+//=========================================================================================
+
+
+Route::get('/adminlogin', function () {
+    return view('admin.index');
+});
+
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+});
+
+Route::get('/add_categories', function () {
+    return view('admin.add_categories');
+});
 
 
 
+
+Route::get('/add_product', function () {
+    return view('admin.add_product');
+});
+
+
+
+Route::get('/manage_product', function () {
+    
+});
+
+Route::get('/add_employee', function () {
+    return view('admin.add_employee');
+});
+
+Route::get('/manage_categories',[CategoryController::class,'index']);
+Route::get('/manage_categories/{id}',[CategoryController::class,'destroy']);
+
+Route::get('/manage_product',[ProductController::class,'index']);
+Route::get('/manage_product/{id}',[ProductController::class,'destroy']);
+
+Route::get('/manage_employee',[EmployeeController::class,'index']);
+Route::get('/manage_employee/{id}',[EmployeeController::class,'destroy']);
+
+
+Route::get('/manage_user',[CustomerController::class,'index']);
+Route::get('/manage_user/{id}',[CustomerController::class,'destroy']);
+
+Route::get('/manage_contact',[ContactController::class,'index']);
+Route::get('/manage_contact/{id}',[ContactController::class,'destroy']);
+
+
+Route::get('/manage_order', function () {
+    return view('admin.manage_order');
+});
 
 

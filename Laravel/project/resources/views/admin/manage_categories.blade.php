@@ -31,21 +31,20 @@
                                 </thead>
                                 <tbody>
 								<?php
-								if(!empty($arr_categories))
+								if(!empty($category_arr))
 								{
-									foreach($arr_categories as $data)
+									foreach($category_arr as $data)
 									{
 									?>
 										<tr>
-											<td><?php echo $data->cate_id;?></td>
-											<td><?php echo $data->name;?></td>
+											<td><?php echo $data->id;?></td>
+											<td><?php echo $data->cate_name;?></td>
 											<td>
-											<?php echo $data->img;?>
-											<img src="assets/img/categories/<?php echo $data->img;?>" width="100px">
+											<?php echo $data->cate_img;?>
 											
 											</td>
 											<td  align="center">
-												<a href="delete?del_cate_id=<?php echo $data->cate_id;?>" class="btn btn-danger" >Delete</a>
+												<a href="manage_categories/<?php echo $data->id;?>" class="btn btn-danger" >Delete</a>
 												<button class="btn btn-primary">Edit</button>
 											</td>
 										</tr>

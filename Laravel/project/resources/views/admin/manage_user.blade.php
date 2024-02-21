@@ -41,7 +41,7 @@
 										{
 										?>
 											<tr>
-												<td><?php echo $data->uid;?></td>
+												<td><?php echo $data->id;?></td>
 												<td><?php echo $data->name;?></td>
 												<td><?php echo $data->email;?></td>
 												<td><?php echo $data->gender;?></td>
@@ -49,8 +49,8 @@
 												<td><?php echo $data->cid;?></td>
 												<td><img src="../website/img/customer/<?php echo $data->img;?>" width="100px"></td>
 												<td  align="center">
-													<a href="delete?del_uid=<?php echo $data->uid;?>" class="btn btn-danger" >Delete</a>
-													<a href="status?status_uid=<?php echo $data->uid;?>" class="btn btn-primary"><?php echo $data->status;?></a>
+													<a href="manage_user/<?php echo $data->id;?>" class="btn btn-danger" >Delete</a>
+													<a href="status?status_uid=<?php echo $data->id;?>" class="btn btn-primary"><?php echo $data->status;?></a>
 												</td>
 											</tr>
 										<?php

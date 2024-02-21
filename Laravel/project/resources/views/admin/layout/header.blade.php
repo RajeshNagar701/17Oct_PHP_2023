@@ -1,17 +1,6 @@
-<?php
-if(isset($_SESSION['adminid']))
-{
-}
-else
-{
-	echo "<script>
-		window.location='admin';
-	</script>";
-}
-?>
 
 
-<!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
@@ -19,13 +8,13 @@ else
     <title>ABC Shooping </title>
 
     <!-- BOOTSTRAP STYLES-->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="{{url('admin/assets/css/bootstrap.css')}}" rel="stylesheet" />
     <!-- FONTAWESOME STYLES-->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="{{url('admin/assets/css/font-awesome.css')}}" rel="stylesheet" />
        <!--CUSTOM BASIC STYLES-->
-    <link href="assets/css/basic.css" rel="stylesheet" />
+    <link href="{{url('admin/assets/css/basic.css')}}" rel="stylesheet" />
     <!--CUSTOM MAIN STYLES-->
-    <link href="assets/css/custom.css" rel="stylesheet" />
+    <link href="{{url('admin/assets/css/custom.css')}}" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
@@ -56,10 +45,10 @@ else
                 <ul class="nav" id="main-menu">
                     <li>
                         <div class="user-img-div">
-                            <img src="assets/img/user.png" class="img-thumbnail" />
+                            <img src="{{url('admin/assets/img/user.png')}}" class="img-thumbnail" />
 
                             <div class="inner-text">
-                                <?php echo $_SESSION['adminname']?>
+                                <?php //echo $_SESSION['adminname']?>
                             <br />
                                 <small>Last Login : 2 Weeks Ago </small>
                             </div>
@@ -114,7 +103,7 @@ else
                         <a href="manage_order"><i class="fa fa-square-o "></i>Order</a>
                     </li>
                     <li>
-                        <a href="manage_inquiry"><i class="fa fa-square-o "></i>Inquiry</a>
+                        <a href="manage_contact"><i class="fa fa-square-o "></i>Contact</a>
                     </li>
                 </ul>
 

@@ -38,12 +38,12 @@
 										{
 										?>
 											<tr>
-												<td><?php echo $data->p_id;?></td>
-												<td><?php echo $data->p_name;?></td>
-												<td><?php echo $data->p_price;?></td>
+												<td><?php echo $data->id;?></td>
+												<td><?php echo $data->name;?></td>
+												<td><?php echo $data->price;?></td>
 												<td><?php echo $data->cate_id;?></td>
 												<td  align="center">
-													<button class="btn btn-danger">Delete</button>
+													<a href="manage_product/<?php echo $data->id;?>" class="btn btn-danger" >Delete</a>
 													<button class="btn btn-primary">Edit</button>
 												</td>
 											</tr>
