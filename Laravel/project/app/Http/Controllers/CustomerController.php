@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\country;
 use App\Models\customer;
 use Illuminate\Http\Request;
+
+use Hash;
 
 class CustomerController extends Controller
 {
@@ -25,7 +28,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        $data=country::all();
+        return view('website.signup',["arr_cuuntries"=>$data]);
     }
 
     /**
@@ -36,7 +40,25 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=new customer;
+        $data->name=$request->name;
+        $data->email=$request->email;
+        $data->password=Hash::make($request->password);
+        $data->gender=$request->gender;
+        $data->hobby=implode(",",$request->hobby);
+        $data->mobile=$request->mobile;
+        $data->cid=$request->cid;
+
+        // image upload
+        $img=$request->file('img');		
+		$filename=time().'_img.'.$img->getClientOriginalExtension();
+		$img->move('website/img/customer/',$filename);  // use move for move image in public/images		
+        $data->img=$filename;
+       
+        $data->save();
+        return redirect()->back();
+
+
     }
 
     /**

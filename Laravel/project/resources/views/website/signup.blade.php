@@ -30,7 +30,8 @@
                         <div class="col-lg-6 offset-lg-3 wow fadeIn" data-wow-delay="0.1s">
                             <div class="h-100 d-flex flex-column justify-content-center p-5">
                                 <h2 class="mb-4">Signup Us</h2>
-                                <form method="post" enctype="multipart/form-data">
+                                <form action="{{url('/insertsignup')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="row g-3">
 										<div class="col-sm-12">
                                             <div class="form-floating">
@@ -48,6 +49,12 @@
                                             <div class="form-floating">
                                                 <input type="password" class="form-control border-0" name="password" id="password" placeholder="Your Password">
                                                 <label for="name">Your Password</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-floating">
+                                                <input type="number" class="form-control border-0" name="mobile" id="password" placeholder="Your Mobile">
+                                                <label for="name">Your Mobile</label>
                                             </div>
                                         </div>
 										<div class="col-sm-12">
@@ -75,7 +82,7 @@
 													foreach($arr_cuuntries as $c)
 													{
 													?>
-														<option value="<?php echo $c->cid?>"><?php echo $c->cnm?></option>
+														<option value="<?php echo $c->id?>"><?php echo $c->cnm?></option>
 													<?php	
 													}
 													?>

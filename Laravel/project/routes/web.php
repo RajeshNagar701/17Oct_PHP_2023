@@ -27,6 +27,27 @@ Route::get('/blade', function () {
 });
 */
 
+// Clear application cache:
+
+Route::get('/cache', function() {
+    Artisan::call('cache:clear');
+});
+
+//Clear route cache:
+
+Route::get('/route', function() {
+Artisan::call('route:cache');});
+//Clear config cache:
+
+Route::get('/config', function() {
+  Artisan::call('config:cache');}); 
+// Clear view cache:
+
+Route::get('/view', function() {
+    Artisan::call('view:clear');
+});
+
+
 Route::get('/', function () {
     return view('website.index');
 });
@@ -54,6 +75,7 @@ Route::get('/classes', function () {
 //Route::get('/contact', function () {return view('website.contact');});
 
 Route::get('/contact',[ContactController::class,'create']);
+Route::post('/insertcontact',[ContactController::class,'store']);
 
 
 Route::get('/edit_user', function () {
@@ -69,10 +91,8 @@ Route::get('/login', function () {
     return view('website.login');
 });
 
-
-Route::get('/signup', function () {
-    return view('website.signup');
-});
+Route::get('/signup',[CustomerController::class,'create']);
+Route::post('/insertsignup',[CustomerController::class,'store']);
 
 
 Route::get('/team', function () {
