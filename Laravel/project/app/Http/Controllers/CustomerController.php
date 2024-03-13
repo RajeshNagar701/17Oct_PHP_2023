@@ -7,6 +7,8 @@ use App\Models\customer;
 use Illuminate\Http\Request;
 
 use Hash;
+use Session;
+use cookie;
 
 class CustomerController extends Controller
 {
@@ -32,6 +34,90 @@ class CustomerController extends Controller
         return view('website.signup',["arr_cuuntries"=>$data]);
     }
 
+
+    public function login(Request $request)
+    {
+        return view('website.login');
+    }
+    
+
+    public function loginauth(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        $email=$request->email;
+        $data=customer::where('email',$email)->first(); // select where email=data // get data fetch_object()
+        if($data)
+        {
+            if(Hash::check($request->password,$data->password))
+            {
+                if($data->status=="Unblock")
+                {
+                    
+                    // cookie
+                    setcookie('email',$request->email,time()+30);
+                    setcookie('password',$request->password,time()+30);
+                    //cookie('email', $data->email, 1440);
+                    //cookie('password', $data->password, 1440);
+
+                    // create session
+                    // $_SESSION['userid'];
+
+                    session()->put('userid',$data->id);
+					session()->put('email',$data->email);
+					session()->put('name',$data->name);
+
+                    echo "<script> 
+                    alert('Login Suuceess !');
+                    window.location='/';
+                    </script>";
+                    
+                  
+                }
+                else
+                {
+                    echo "<script> 
+                        alert('Blocked !'); 
+                        window.location='/login';
+                    </script>";
+                   
+                }
+            }
+            else
+            {
+                echo "<script> 
+                        alert('Password not match !'); 
+                        window.location='/login';
+                    </script>";
+                   
+               
+            }
+        }
+        else
+        {
+            echo "<script>
+                alert('Username does not exits !');
+                window.location='/login';
+             </script>";
+            
+        }
+
+    }
+
+
+    function logout()
+    {
+        // delete
+        session()->pull('userid');
+		session()->pull('email');
+		session()->pull('name');
+		return redirect('/');
+    }
+
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -40,6 +126,18 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validated = $request->validate([
+            'name' => 'required|alpha:ascii |max:255',
+            'email' => 'required|unique:customers',
+            'password' => 'required|min:8|max:12',
+            'mobile' => 'required|integer|size:10',
+            'gender' => ['required', 'in:Male,Female'],
+            'hobby[]' => 'integer|boolean|min:0|max:2',
+            'cid' => 'required',
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
         $data=new customer;
         $data->name=$request->name;
         $data->email=$request->email;
@@ -54,12 +152,10 @@ class CustomerController extends Controller
 		$filename=time().'_img.'.$img->getClientOriginalExtension();
 		$img->move('website/img/customer/',$filename);  // use move for move image in public/images		
         $data->img=$filename;
-       
         $data->save();
         return redirect()->back();
-
-
     }
+
 
     /**
      * Display the specified resource.

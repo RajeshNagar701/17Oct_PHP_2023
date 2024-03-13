@@ -30,18 +30,27 @@
                         <div class="col-lg-6 offset-lg-3 wow fadeIn" data-wow-delay="0.1s">
                             <div class="h-100 d-flex flex-column justify-content-center p-5">
                                 <h2 class="mb-4">Signup Us</h2>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <form action="{{url('/insertsignup')}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row g-3">
 										<div class="col-sm-12">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control border-0" name="name" id="text" placeholder="Your Name">
+                                                <input type="text" value="{{ old('name')}}" class="form-control border-0" name="name" id="text" placeholder="Your Name">
                                                 <label for="text">Your Name</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="form-floating">
-                                                <input type="email" class="form-control border-0" name="email" id="email" placeholder="Your Email">
+                                                <input type="email" value="{{ old('email')}}" class="form-control border-0" name="email" id="email" placeholder="Your Email">
                                                 <label for="email">Your Email</label>
                                             </div>
                                         </div>
@@ -53,36 +62,36 @@
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="form-floating">
-                                                <input type="number" class="form-control border-0" name="mobile" id="password" placeholder="Your Mobile">
+                                                <input type="number" value="{{ old('mobile')}}" class="form-control border-0" name="mobile" id="password" placeholder="Your Mobile">
                                                 <label for="name">Your Mobile</label>
                                             </div>
                                         </div>
 										<div class="col-sm-12">
                                             <div class="form-floating">
 												<label for="name" class="mb-5">Your Gender</label><br><br>
-                                                Male: <input type="radio" name="gender" value="Male">
-												Female: <input type="radio" name="gender" value="Female" >
+                                                Male: <input type="radio" name="gender" value="Male" {{ old("gender") == 'Male' ? 'checked' : '' }} />
+												Female: <input type="radio" name="gender" value="Female"  {{ old("gender") == 'Female' ? 'checked' : '' }} />
                  
                                             </div>
                                         </div>
 										<div class="col-sm-12">
                                             <div class="form-floating">
 												<label for="name" class="mb-5">Your Hobby</label><br><br>
-                                                Cricket: <input type="checkbox" name="hobby[]"  value="Cricket">
-												Singing: <input type="checkbox"  name="hobby[]" value="Singing">
-												Reading: <input type="checkbox" name="hobby[]" value="Reading">
+                                                Cricket: <input type="checkbox" name="hobby[]"  value="Cricket" {{(is_array(old('hobby')) && in_array('Cricket', old('hobby'))) ? ' checked' : '' }} />
+												Singing: <input type="checkbox"  name="hobby[]" value="Singing" {{(is_array(old('hobby')) && in_array('Singing', old('hobby'))) ? ' checked' : '' }} />
+												Reading: <input type="checkbox" name="hobby[]" value="Reading"  {{(is_array(old('hobby')) && in_array('Reading', old('hobby'))) ? ' checked' : '' }} />
                                             </div>
                                         </div>
 										 <div class="col-sm-12">
                                             <div class="form-floating">
 												<label for="name">Your Country</label><br><br>
-                                                <select class="form-control border-0" name="cid" required>
+                                                <select class="form-control border-0" name="cid">
 													<option value="">Select Country</option>
 													<?php
 													foreach($arr_cuuntries as $c)
 													{
 													?>
-														<option value="<?php echo $c->id?>"><?php echo $c->cnm?></option>
+														<option value="<?php echo $c->id?>" @if (old('cid') == $c->id) {{ 'selected' }} @endif ><?php echo $c->cnm?></option>
 													<?php	
 													}
 													?>

@@ -77,7 +77,6 @@ Route::get('/classes', function () {
 Route::get('/contact',[ContactController::class,'create']);
 Route::post('/insertcontact',[ContactController::class,'store']);
 
-
 Route::get('/edit_user', function () {
     return view('website.edit_user');
 });
@@ -87,18 +86,16 @@ Route::get('/facility', function () {
 });
 
 
-Route::get('/login', function () {
-    return view('website.login');
-});
+Route::get('/login',[CustomerController::class,'login']);
+Route::post('/loginauth',[CustomerController::class,'loginauth']);
+Route::get('/logout',[CustomerController::class,'logout']);
 
 Route::get('/signup',[CustomerController::class,'create']);
 Route::post('/insertsignup',[CustomerController::class,'store']);
 
-
 Route::get('/team', function () {
     return view('website.team');
 });
-
 
 Route::get('/testimonial', function () {
     return view('website.testimonial');

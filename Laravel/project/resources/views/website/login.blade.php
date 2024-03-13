@@ -29,19 +29,26 @@
                         <div class="col-lg-6 offset-lg-3 wow fadeIn" data-wow-delay="0.1s">
                             <div class="h-100 d-flex flex-column justify-content-center p-5">
                                 <h2 class="mb-4">Login Us</h2>
-                                <form action="" method="post">
+                                <form action="{{ url('/loginauth') }}" method="post">
+                                    @csrf
                                     <div class="row g-3">
                                        
                                         <div class="col-sm-12">
                                             <div class="form-floating">
-                                                <input type="email" class="form-control border-0" id="email" name="email" placeholder="Your Email">
+                                                <input type="email" class="form-control border-0" value="<?php if(isset($_COOKIE['email'])){echo $_COOKIE['email'];}?>" id="email" name="email" placeholder="Your Email">
                                                 <label for="email">Your Email</label>
+                                                @error('email')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
 										 <div class="col-sm-12">
                                             <div class="form-floating">
-                                                <input type="password" class="form-control border-0" id="password" name="password"  placeholder="Your Password">
+                                                <input type="password" class="form-control border-0" value="<?php if(isset($_COOKIE['password'])){echo $_COOKIE['password'];}?>" id="password" name="password"  placeholder="Your Password">
                                                 <label for="name">Your Password</label>
+                                                @error('password')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                        

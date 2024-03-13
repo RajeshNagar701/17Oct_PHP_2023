@@ -76,7 +76,7 @@
                     </div>
                     <a href="contact" class="nav-item nav-link <?php active('contact')?>">Contact Us</a>
 				<?php
-				if(isset($_SESSION['userid']))
+				if(session()->has('userid'))
 				{
 				?>
 					<a href="profile" class="nav-item nav-link <?php active('profile')?>">My Accout</a>
@@ -88,11 +88,11 @@
 				</div>
 				
 				<?php
-				if(isset($_SESSION['userid']))
+				if(session()->has('userid'))
 				{
 				?>
-					<a href="logout" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Logout<i class="fa fa-arrow-right ms-3"></i></a>
-					<a href="login" class="ms-2 btn btn-primary rounded-pill px-3 d-none d-lg-block">Hi..<?php echo $_SESSION['username']?> <i class="fa fa-user ms-3"></i></a>
+				<a href="logout" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Logout<i class="fa fa-arrow-right ms-3"></i></a>
+				<a href="login" class="ms-2 btn btn-primary rounded-pill px-3 d-none d-lg-block">Hi..{{session()->get('name')}} <i class="fa fa-user ms-3"></i></a>
 				<?php
 				}
 				else
