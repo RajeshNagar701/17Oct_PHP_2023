@@ -9,7 +9,7 @@
                     <div class="row g-0">
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s" style="min-height: 400px;">
                             <div class="position-relative h-100">
-                                <img class="position-absolute w-100 h-100 rounded" src="{{url('website/img/customer/<?php echo $fetch->img?>" style="object-fit: cover;">
+                                <img class="position-absolute w-100 h-100 rounded" <img src="../website/img/customer/<?php echo $fetch->img;?>" style="object-fit: cover;" / >
                             </div>
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
@@ -18,9 +18,11 @@
                                 <p class="mb-4">Email : <?php echo $fetch->email?></p>
 								 <p class="mb-4">Gender : <?php echo $fetch->gender?></p>
 								  <p class="mb-4">Hobby : <?php echo $fetch->hobby?></p>
+								  <p class="mb-4">Mobile : <?php echo $fetch->mobile?></p>
 								   <p class="mb-4">Country : <?php echo $fetch->cid?></p>
-                                <a class="btn btn-primary py-3 px-5" href="edit_user?edit_uid=<?php echo $fetch->uid?>">Edit Profile<i class="fa fa-arrow-right ms-2"></i></a>
-                            </div>
+                                <a class="btn btn-primary py-3 px-5" href="profile/<?php echo $fetch->id;?>">Edit Profile<i class="fa fa-arrow-right ms-2"></i></a>
+                            
+							</div>
                         </div>
                     </div>
                 </div>

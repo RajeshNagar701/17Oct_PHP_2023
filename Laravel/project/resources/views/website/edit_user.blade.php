@@ -29,7 +29,17 @@
                         <div class="col-lg-6 offset-lg-3 wow fadeIn" data-wow-delay="0.1s">
                             <div class="h-100 d-flex flex-column justify-content-center p-5">
                                 <h2 class="mb-4">Edit Profile</h2>
-                                <form method="post" enctype="multipart/form-data">
+								 @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                <form action="{{url('profile/'.$fetch->id)}}" method="post" enctype="multipart/form-data">
+									@csrf
                                     <div class="row g-3">
 										<div class="col-sm-12">
                                             <div class="form-floating">
@@ -96,16 +106,22 @@
                                         </div>
 										 <div class="col-sm-12">
                                             <div class="form-floating">
+                                                <input type="number" value="{{$fetch->mobile}}" class="form-control border-0" name="mobile" id="password" placeholder="Your Mobile">
+                                                <label for="name">Your Mobile</label>
+                                            </div>
+                                        </div>
+										 <div class="col-sm-12">
+                                            <div class="form-floating">
 												<label for="name">Your Country</label><br><br>
                                                 <select class="form-control border-0" name="cid" required>
 													<option value="">Select Country</option>
 													<?php
 													foreach($arr_cuuntries as $c)
 													{
-														if($c->cid==$fetch->cid)
+														if($c->id==$fetch->cid)
 														{
 													?>
-														<option value="<?php echo $c->cid?>" selected>
+														<option value="<?php echo $c->id?>" selected>
 															<?php echo $c->cnm?>
 														</option>
 													<?php	
@@ -113,7 +129,7 @@
 														else
 														{
 														?>
-														<option value="<?php echo $c->cid?>">
+														<option value="<?php echo $c->id?>">
 															<?php echo $c->cnm?>
 														</option>	
 														<?php
@@ -127,7 +143,8 @@
 										 <div class="col-sm-12">
                                             <div class="form-floating">
                                                 <input type="file" class="form-control border-0" name="img" >
-												<img src="{{url('website/img/customer/<?php echo $fetch->img?>" width="100px"/>
+												
+												<img src="{{url('website/img/customer/'.$fetch->img)}}" width="100px"/>
                                                 <label for="email">Your Image</label>
                                             </div>
                                         </div>

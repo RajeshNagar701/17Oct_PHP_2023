@@ -90,6 +90,11 @@ Route::get('/login',[CustomerController::class,'login']);
 Route::post('/loginauth',[CustomerController::class,'loginauth']);
 Route::get('/logout',[CustomerController::class,'logout']);
 
+
+Route::get('/profile',[CustomerController::class,'profile']);
+Route::get('/profile/{id}',[CustomerController::class,'edit']);
+Route::post('/profile/{id}',[CustomerController::class,'update']);
+
 Route::get('/signup',[CustomerController::class,'create']);
 Route::post('/insertsignup',[CustomerController::class,'store']);
 

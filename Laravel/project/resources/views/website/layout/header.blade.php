@@ -92,7 +92,7 @@
 				{
 				?>
 				<a href="logout" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Logout<i class="fa fa-arrow-right ms-3"></i></a>
-				<a href="login" class="ms-2 btn btn-primary rounded-pill px-3 d-none d-lg-block">Hi..{{session()->get('name')}} <i class="fa fa-user ms-3"></i></a>
+				<a href="profile" class="ms-2 btn btn-primary rounded-pill px-3 d-none d-lg-block">Hi..{{session()->get('name')}} <i class="fa fa-user ms-3"></i></a>
 				<?php
 				}
 				else

@@ -22,6 +22,8 @@ class CustomerController extends Controller
 		$data=customer::all();
         return view('admin.manage_user',["customers_arr"=>$data]);
     }
+	
+	
 
     /**
      * Show the form for creating a new resource.
@@ -131,7 +133,7 @@ class CustomerController extends Controller
             'name' => 'required|alpha:ascii |max:255',
             'email' => 'required|unique:customers',
             'password' => 'required|min:8|max:12',
-            'mobile' => 'required|integer|size:10',
+            'mobile' => 'required|digits:10',
             'gender' => ['required', 'in:Male,Female'],
             'hobby[]' => 'integer|boolean|min:0|max:2',
             'cid' => 'required',
@@ -174,9 +176,20 @@ class CustomerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(customer $customer)
+	 
+	public function profile()
     {
-        //
+		$id=session()->get('userid');
+		//$data=customer::find($id); // if you want get data only ID 
+		$data=customer::where('id','=',$id)->first();
+        return view('website.profile',["fetch"=>$data]);
+    } 
+	 
+    public function edit(customer $customer,$id)
+    {   
+		$coutries=country::all();
+		$data=customer::find($id);
+        return view('website.edit_user',["arr_cuuntries"=>$coutries,"fetch"=>$data]);
     }
 
     /**
@@ -186,9 +199,41 @@ class CustomerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, customer $customer)
+    public function update(Request $request, customer $customer,$id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|alpha:ascii |max:255',
+            'email' => 'required',
+            'mobile' => 'required|digits:10',
+            'gender' => ['required', 'in:Male,Female'],
+            'hobby[]' => 'integer|boolean|min:0|max:2',
+            'cid' => 'required',
+            'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        $data=customer::find($id);
+        $data->name=$request->name;
+        $data->email=$request->email;
+        $data->gender=$request->gender;
+        $data->hobby=implode(",",$request->hobby);
+        $data->mobile=$request->mobile;
+        $data->cid=$request->cid;
+
+        // image upload
+		if($request->hasfile('img'))
+		{
+			$old_img=$data->img; // get old img for delete
+			 
+			$img=$request->file('img');		
+			$filename=time().'_img.'.$img->getClientOriginalExtension();
+			$img->move('website/img/customer/',$filename);  // use move for move image in public/images		
+			$data->img=$filename;
+			
+			unlink('website/img/customer/'.$old_img);
+		} 
+		
+	    $data->update();
+        return redirect('/profile');
     }
 
     /**
