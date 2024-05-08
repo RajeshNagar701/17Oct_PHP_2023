@@ -8,7 +8,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,21 +29,23 @@ Route::get('/blade', function () {
 
 // Clear application cache:
 
-Route::get('/cache', function() {
+Route::get('/cache', function () {
     Artisan::call('cache:clear');
 });
 
 //Clear route cache:
 
-Route::get('/route', function() {
-Artisan::call('route:cache');});
+Route::get('/route', function () {
+    Artisan::call('route:cache');
+});
 //Clear config cache:
 
-Route::get('/config', function() {
-  Artisan::call('config:cache');}); 
+Route::get('/config', function () {
+    Artisan::call('config:cache');
+});
 // Clear view cache:
 
-Route::get('/view', function() {
+Route::get('/view', function () {
     Artisan::call('view:clear');
 });
 
@@ -74,8 +76,8 @@ Route::get('/classes', function () {
 
 //Route::get('/contact', function () {return view('website.contact');});
 
-Route::get('/contact',[ContactController::class,'create']);
-Route::post('/insertcontact',[ContactController::class,'store']);
+Route::get('/contact', [ContactController::class, 'create']);
+Route::post('/insertcontact', [ContactController::class, 'store']);
 
 Route::get('/edit_user', function () {
     return view('website.edit_user');
@@ -86,17 +88,17 @@ Route::get('/facility', function () {
 });
 
 
-Route::get('/login',[CustomerController::class,'login']);
-Route::post('/loginauth',[CustomerController::class,'loginauth']);
-Route::get('/logout',[CustomerController::class,'logout']);
+Route::get('/login', [CustomerController::class, 'login'])->middleware('userafterlogin');
+Route::post('/loginauth', [CustomerController::class, 'loginauth'])->middleware('userafterlogin');
+Route::get('/logout', [CustomerController::class, 'logout']);
 
 
-Route::get('/profile',[CustomerController::class,'profile']);
-Route::get('/profile/{id}',[CustomerController::class,'edit']);
-Route::post('/profile/{id}',[CustomerController::class,'update']);
+Route::get('/profile', [CustomerController::class, 'profile'])->middleware('userbeforelogin');
+Route::get('/profile/{id}', [CustomerController::class, 'edit'])->middleware('userbeforelogin');
+Route::post('/profile/{id}', [CustomerController::class, 'update'])->middleware('userbeforelogin');
 
-Route::get('/signup',[CustomerController::class,'create']);
-Route::post('/insertsignup',[CustomerController::class,'store']);
+Route::get('/signup', [CustomerController::class, 'create'])->middleware('userafterlogin');
+Route::post('/insertsignup', [CustomerController::class, 'store'])->middleware('userafterlogin');
 
 Route::get('/team', function () {
     return view('website.team');
@@ -109,55 +111,39 @@ Route::get('/testimonial', function () {
 
 //=========================================================================================
 
-
-Route::get('/adminlogin', function () {
-    return view('admin.index');
+Route::group(['middleware' => ['adminafterlogin']], function () {
+    Route::get('/adminlogin', [AdminController::class, 'index']);
+    Route::post('/adminloginauth', [AdminController::class, 'adminloginauth']);
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
+Route::group(['middleware' => ['adminbeforelogin']], function () {
+
+    Route::get('/adminlogout', [AdminController::class, 'adminlogout']);
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    });
+    Route::get('/add_categories', function () {
+        return view('admin.add_categories');
+    });
+    Route::get('/add_product', function () {
+        return view('admin.add_product');
+    });
+    Route::get('/manage_product', function () {
+    });
+    Route::get('/add_employee', function () {
+        return view('admin.add_employee');
+    });
+    Route::get('/manage_categories', [CategoryController::class, 'index']);
+    Route::get('/manage_categories/{id}', [CategoryController::class, 'destroy']);
+    Route::get('/manage_product', [ProductController::class, 'index']);
+    Route::get('/manage_product/{id}', [ProductController::class, 'destroy']);
+    Route::get('/manage_employee', [EmployeeController::class, 'index']);
+    Route::get('/manage_employee/{id}', [EmployeeController::class, 'destroy']);
+    Route::get('/manage_user', [CustomerController::class, 'index']);
+    Route::get('/manage_user/{id}', [CustomerController::class, 'destroy']);
+    Route::get('/manage_contact', [ContactController::class, 'index']);
+    Route::get('/manage_contact/{id}', [ContactController::class, 'destroy']);
+    Route::get('/manage_order', function () {
+        return view('admin.manage_order');
+    });
 });
-
-Route::get('/add_categories', function () {
-    return view('admin.add_categories');
-});
-
-
-
-
-Route::get('/add_product', function () {
-    return view('admin.add_product');
-});
-
-
-
-Route::get('/manage_product', function () {
-    
-});
-
-Route::get('/add_employee', function () {
-    return view('admin.add_employee');
-});
-
-Route::get('/manage_categories',[CategoryController::class,'index']);
-Route::get('/manage_categories/{id}',[CategoryController::class,'destroy']);
-
-Route::get('/manage_product',[ProductController::class,'index']);
-Route::get('/manage_product/{id}',[ProductController::class,'destroy']);
-
-Route::get('/manage_employee',[EmployeeController::class,'index']);
-Route::get('/manage_employee/{id}',[EmployeeController::class,'destroy']);
-
-
-Route::get('/manage_user',[CustomerController::class,'index']);
-Route::get('/manage_user/{id}',[CustomerController::class,'destroy']);
-
-Route::get('/manage_contact',[ContactController::class,'index']);
-Route::get('/manage_contact/{id}',[ContactController::class,'destroy']);
-
-
-Route::get('/manage_order', function () {
-    return view('admin.manage_order');
-});
-
-

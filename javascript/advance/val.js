@@ -1,19 +1,22 @@
 
 function reg_form(str)
 {
+	//required
 	if(str.uname.value=="")
 	{
 	document.getElementById("msg1").innerHTML="! Please enter Some Value in User Name";
 	str.uname.focus();
 	return false;
 	}
-	
+			
+	// alpha		
 	if(!str.uname.value.match(/^[a-zA-Z]{1,}$/))
 	{
 	document.getElementById("msg1").innerHTML="! Please enter Only Character Value";
 	str.uname.focus();
 	return false;
 	}
+	
 	
 	if(str.pass.value=="")
 	{
@@ -36,7 +39,7 @@ function reg_form(str)
 	str.email.focus();
 	return false;
 	}
-	
+	// email check
 	if(!str.email.value.match(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,3})+$/))
 	{
 	document.getElementById("msg1").innerHTML="! Please enter Correct Email Address";

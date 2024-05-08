@@ -46,7 +46,7 @@
 												<td><?php echo $data->email;?></td>
 												<td><?php echo $data->gender;?></td>
 												<td><?php echo $data->hobby;?></td>
-												<td><?php echo $data->cid;?></td>
+												<td><?php echo $data->cnm;?></td>
 												<td><img src="../website/img/customer/<?php echo $data->img;?>" width="100px"></td>
 												<td  align="center">
 													<a href="manage_user/<?php echo $data->id;?>" class="btn btn-danger" >Delete</a>

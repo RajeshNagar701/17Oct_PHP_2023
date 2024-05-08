@@ -17,9 +17,10 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
-		$data=customer::all();
+		$data=customer::join('countries', 'customers.cid', '=','countries.id')->get(['customers.*', 'countries.cnm']);
         return view('admin.manage_user',["customers_arr"=>$data]);
     }
 	
